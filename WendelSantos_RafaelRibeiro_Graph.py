@@ -19,7 +19,7 @@ class Graph:
     def addDirectedEdges(self, u, v):
         self.graph[u].append(v)
 
-    def addNoDirectedEdges(self, u, v):
+    def addNotDirectedEdges(self, u, v):
         self.graph[u].append(v)
         self.graph[v].append(u)
 
@@ -49,7 +49,7 @@ class Graph:
         print('Grau de um determinado vértice:')
         for i in range(len(self.graph[u])):
             i += 1
-        print('O grau do vértice {} é: {}'.format(u, i))
+        print('O grau do vértice {} é: {}'.format(u, i+1))
         print('')
 
     def showAdjacentList(self, u):
@@ -163,7 +163,7 @@ G.showList()
 # Existência de uma determinada aresta
 G.existEdge(1, 2)
 # Verifica o grau do vértice
-G.vertexDegree(1)
+G.vertexDegree(0)
 # Printa a lista de adjacência de um determinado vértice:
 G.showAdjacentList(1)
 # Verifica se o grafo é cíclico
