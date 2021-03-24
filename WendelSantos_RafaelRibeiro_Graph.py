@@ -10,16 +10,21 @@ class Graph:
     def __init__(self, number_of_vertices):
         self.number_of_vertices = number_of_vertices
         self.graph = [[] for i in range(self.number_of_vertices)]
+        self.G = nx.DiGraph()
+        self.G.add_edges_from([
+            (0, 1), (1, 2), (1, 3), (1, 5), (2, 3), (2, 0), (3, 4),
+            (4, 3), (5, 4), (5, 6), (6, 5), (6, 7), (7, 4), (7, 6)
+        ])
 
-    def addEdgesDirected(self, u, v):
+    def addDirectedEdges(self, u, v):
         self.graph[u].append(v)
 
-    def addEdgesNoDirected(self, u, v):
+    def addNoDirectedEdges(self, u, v):
         self.graph[u].append(v)
         self.graph[v].append(u)
 
     def showGraph(self):
-        print('Grafo em formato vetorial:')
+        print('Grafo em formato lista de listas:')
         print(self.graph)
         print('')
 
@@ -76,7 +81,7 @@ class Graph:
             graph[i] = self.graph[i]
         color = {u: 'white' for u in graph}
         foundCycle = [False]
-        for u in graph:  # - Visit all nodes.
+        for u in graph:
             if color[u] == 'white':
                 self.dfsVisit(u, color, foundCycle)
             if foundCycle[0]:
@@ -90,25 +95,16 @@ class Graph:
 
     def connected(self):
         print('Verifica se o grafo é conexo:')
-        G = nx.DiGraph()
-        G.add_edges_from([
-            (0, 1), (1, 2), (1, 3), (1, 5), (2, 3), (2, 0), (3, 4),
-            (4, 3), (5, 4), (5, 6), (6, 5), (6, 7), (7, 4), (7, 6)
-        ])
-        if nx.is_weakly_connected(G):
+
+        if nx.is_weakly_connected(self.G):
             print('O grafo é conexo.\n')
         else:
             print('O grafo não é conexo.\n')
 
     def stronglyConnectedComponents(self):
         print('Verifica quais e quantos são os componentes conexos:')
-        G = nx.DiGraph()
-        G.add_edges_from([
-            (0, 1), (1, 2), (1, 3), (1, 5), (2, 3), (2, 0), (3, 4),
-            (4, 3), (5, 4), (5, 6), (6, 5), (6, 7), (7, 4), (7, 6)
-        ])
-        numberOfComponents = nx.number_strongly_connected_components(G)
-        components = nx.strongly_connected_components(G)
+        numberOfComponents = nx.number_strongly_connected_components(self.G)
+        components = nx.strongly_connected_components(self.G)
         print(
             'Número de componentes fortemente conexos: {}'
             .format(
@@ -138,12 +134,7 @@ class Graph:
 
     def plotGraph(self):
         print('O grafo está plotado...')
-        G = nx.DiGraph()
-        G.add_edges_from([
-            (0, 1), (1, 2), (1, 3), (1, 5), (2, 3), (2, 0), (3, 4),
-            (4, 3), (5, 4), (5, 6), (6, 5), (6, 7), (7, 4), (7, 6)
-        ])
-        nx.draw(G, with_labels=True, font_weight='bold')
+        nx.draw(self.G, with_labels=True, font_weight='bold')
         plt.show()
 
 
@@ -151,20 +142,20 @@ class Graph:
 G = Graph(8)
 
 # Criando grafo
-G.addEdgesDirected(0, 1)
-G.addEdgesDirected(1, 2)
-G.addEdgesDirected(1, 3)
-G.addEdgesDirected(1, 5)
-G.addEdgesDirected(2, 0)
-G.addEdgesDirected(2, 3)
-G.addEdgesDirected(3, 4)
-G.addEdgesDirected(4, 3)
-G.addEdgesDirected(5, 4)
-G.addEdgesDirected(5, 6)
-G.addEdgesDirected(6, 5)
-G.addEdgesDirected(6, 7)
-G.addEdgesDirected(7, 4)
-G.addEdgesDirected(7, 6)
+G.addDirectedEdges(0, 1)
+G.addDirectedEdges(1, 2)
+G.addDirectedEdges(1, 3)
+G.addDirectedEdges(1, 5)
+G.addDirectedEdges(2, 0)
+G.addDirectedEdges(2, 3)
+G.addDirectedEdges(3, 4)
+G.addDirectedEdges(4, 3)
+G.addDirectedEdges(5, 4)
+G.addDirectedEdges(5, 6)
+G.addDirectedEdges(6, 5)
+G.addDirectedEdges(6, 7)
+G.addDirectedEdges(7, 4)
+G.addDirectedEdges(7, 6)
 # Printa Grafo (Vetor)
 G.showGraph()
 # Printa toda a lista de adjacência
