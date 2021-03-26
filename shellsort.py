@@ -9,7 +9,7 @@ print(numbers)
 
 
 def shellSort(numbers):
-    numberOfInteractionsOrdination = 0
+    numberOfIterationsOrdination = 0
     h = len(numbers)//2
     while h > 0:
         i = h
@@ -27,20 +27,20 @@ def shellSort(numbers):
             if changed:
                 numbers[j+h] = temporary
             i += 1
-        numberOfInteractionsOrdination += 1
+        numberOfIterationsOrdination += 1
         h = h // 2
-    print('Iterações Shellsort: {}'.format(numberOfInteractionsOrdination))
+    print('\nIterações Shellsort: {}'.format(numberOfIterationsOrdination))
 
 
 def searchElement(element, array):
-    numberOfInteractionsSearch = 0
+    numberOfIterationsSearch = 0
     for i in array:
-        numberOfInteractionsSearch += 1
+        numberOfIterationsSearch += 1
         if i == element:
             print('O número {} se encontra na posição {}.'.format(
                 element, array.index(i)))
             break
-    print('Iterações de busca: {}'.format(numberOfInteractionsSearch))
+    print('Iterações de busca: {}'.format(numberOfIterationsSearch))
 
 
 beforeOrdination = time.time()
