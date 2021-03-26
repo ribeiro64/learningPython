@@ -2,7 +2,7 @@ import random
 import time
 
 length = int(input('Digite o tamanho do vetor: '))
-
+numberOfInteractions = 0
 numbers = list(range(0, length))
 random.shuffle(numbers)
 print('Vetor original:')
@@ -10,9 +10,8 @@ print(numbers)
 
 
 def shellSort(numbers):
-
     h = len(numbers)//2
-
+    numberOfInteractions = 0
     while h > 0:
         i = h
 
@@ -29,7 +28,9 @@ def shellSort(numbers):
             if changed:
                 numbers[j+h] = temporary
             i += 1
+        numberOfInteractions += 1
         h = h // 2
+    return numberOfInteractions
 
 
 def searchElement(element, array):
@@ -39,15 +40,19 @@ def searchElement(element, array):
                 element, array.index(i)))
 
 
-before = time.time()
+beforeOrdination = time.time()
 shellSort(numbers)
-after = time.time()
-
-total = (after - before)*1000
+afterOrdination = time.time()
+totalOrdination = (afterOrdination - beforeOrdination)*1000
 print('Vetor ordenado:')
 print(numbers)
-print('Tempo total: %.2f ms' % total)
+print('Tempo total para ordenação: %.2f ms' % totalOrdination)
 print('')
 
 element = int(input('Digite o número a ser buscado: '))
+beforeSerach = time.time()
 searchElement(element, numbers)
+afterSearch = time.time()
+totalSerach = (afterSearch - beforeSerach)*1000
+print('Tempo total para busca: %.2f ms' % totalSerach)
+print('')
