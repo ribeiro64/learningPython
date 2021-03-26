@@ -32,6 +32,13 @@ def shellSort(numbers):
         h = h // 2
 
 
+def searchElement(element, array):
+    for i in array:
+        if i == element:
+            print('O número {} se encontra na posição {}.'.format(
+                element, array.index(i)))
+
+
 before = time.time()
 shellSort(numbers)
 after = time.time()
@@ -40,3 +47,7 @@ total = (after - before)*1000
 print('Vetor ordenado:')
 print(numbers)
 print('Tempo total: %.2f ms' % total)
+print('')
+
+element = int(input('Digite o número a ser buscado: '))
+searchElement(element, numbers)
