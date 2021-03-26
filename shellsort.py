@@ -1,7 +1,9 @@
 import random
 import time
 
-numbers = list(range(0, 10))
+length = int(input('Digite o tamanho do vetor: '))
+
+numbers = list(range(0, length))
 random.shuffle(numbers)
 print('Vetor original:')
 print(numbers)
