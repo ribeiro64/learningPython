@@ -19,7 +19,7 @@ def shellSort(numbers):
             changed = False
             j = i - h
 
-            while j >= 0 and numbers[j] > temporary:
+            while j >= 0 and numbers[j] > numbers[i]:
                 numbers[j+h] = numbers[j]
                 changed = True
                 j -= h
@@ -27,7 +27,7 @@ def shellSort(numbers):
             if changed:
                 numbers[j+h] = temporary
             i += 1
-        numberOfIterationsOrdination += 1
+            numberOfIterationsOrdination += 1
         h = h // 2
     print('\nIterações Shellsort: {}'.format(numberOfIterationsOrdination))
 
